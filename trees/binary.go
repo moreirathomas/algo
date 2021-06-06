@@ -21,8 +21,13 @@ const (
 	ChildRight
 )
 
+// New returns a new binary tree given the root node's value.
+func NewBinaryTree(rootVal int) *treeNode {
+	return &treeNode{Val: rootVal}
+}
+
 // New returns a new binary tree with a randomized initial value.
-func NewBinaryTree() *treeNode {
+func NewBinaryTreeRandomized() *treeNode {
 	return &treeNode{Val: util.RandomNonZeroDigit()}
 }
 
@@ -79,25 +84,6 @@ func invert(node *treeNode) {
 		invert(node.Right)
 	}
 }
-
-// NewBinaryTreeRandomized returns a tree of the given depth.
-// The first node is not interpreted as a level of depth.
-// The value of each node is generated ramdomly.
-// func NewBinaryTreeRandomized(depth int) *treeNode {
-// 	return writeTree(depth)
-// }
-
-// func writeTree(depth int) *treeNode {
-// 	nextNode := &treeNode{Val: util.RandomNonZeroDigit(), Left: nil, Right: nil}
-// 	if depth < 1 {
-// 		return nextNode
-// 	}
-
-// 	depth -= 1
-// 	nextNode.Left = writeTree(depth)
-// 	nextNode.Right = writeTree(depth)
-// 	return nextNode
-// }
 
 // String returns the JSON stringified version of a tree.
 func (tree treeNode) String() string {
