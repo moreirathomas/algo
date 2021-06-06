@@ -83,7 +83,7 @@ func TestInsertNode(t *testing.T) {
 
 func TestRootNode(t *testing.T) {
 	tree := trees.NewBinaryTree(valuesDepth2...)
-	root := tree.Left.Left.Root
+	root := tree.Left.Left.Root()
 
 	if root == nil || root != tree {
 		t.Errorf("expected to get root node: want %s, got %s", tree.String(), root.String())
@@ -92,10 +92,15 @@ func TestRootNode(t *testing.T) {
 
 func TestSiblingNode(t *testing.T) {
 	tree := trees.NewBinaryTree(valuesDepth1...)
-	sibling := tree.Left.Sibling()
 
+	nilSibling := tree.Sibling()
+	if nilSibling != nil {
+		t.Errorf("expected to get no sibling for root: want %v, got %s", nil, nilSibling.String())
+	}
+
+	sibling := tree.Left.Sibling()
 	if sibling != tree.Right {
-		t.Errorf("expected to get sibling node: want %s, got %s", tree.Right.String(), sibling.String())
+		t.Errorf("expected to get sibling for node: want %s, got %s", tree.Right.String(), sibling.String())
 	}
 }
 

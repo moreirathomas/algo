@@ -6,10 +6,10 @@ import (
 
 type treeNode struct {
 	Val    int       `json:"value"`
-	Parent *treeNode `json:"-"`
 	Left   *treeNode `json:"left,omitempty"`
 	Right  *treeNode `json:"right,omitempty"`
-	Root   *treeNode `json:"-"`
+	parent *treeNode `json:"-"`
+	root   *treeNode `json:"-"`
 }
 
 // NewBinaryTree returns a binary tree. The first value passed is always the root.
@@ -50,10 +50,10 @@ func NewNode(val int, parent *treeNode) *treeNode {
 	// Infer the root node: either this is the root,
 	// or the parent has no root and thus is the root, or it knows the root.
 	root := parent
-	if parent != nil && parent.Root != nil {
-		root = parent.Root
+	if parent != nil && parent.root != nil {
+		root = parent.root
 	}
-	return &treeNode{Val: val, Parent: parent, Root: root}
+	return &treeNode{Val: val, parent: parent, root: root}
 }
 
 // Invert inverts a tree in place.
@@ -65,16 +65,23 @@ func (tree *treeNode) Invert() {
 	}
 }
 
+func (node *treeNode) Parent() *treeNode {
+	return node.parent
+}
+
+func (node *treeNode) Root() *treeNode {
+	return node.root
+}
+
 // Sibling returns the other node at the same level of depth from the same parent.
 func (node *treeNode) Sibling() *treeNode {
-	// eh.
-	if node.Parent == nil {
+	if node.parent == nil {
 		return nil
-	} else if node.Parent.Left == node {
-		return node.Parent.Right
-	} else {
-		return node
 	}
+	if node.parent.Left == node {
+		return node.parent.Right
+	}
+	return node
 }
 
 // String returns the JSON stringified version of a tree.
