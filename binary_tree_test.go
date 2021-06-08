@@ -1,9 +1,9 @@
-package trees_test
+package algo_test
 
 import (
 	"testing"
 
-	"github.com/moreirathomas/algo/trees"
+	"github.com/moreirathomas/algo"
 	"github.com/moreirathomas/algo/util"
 )
 
@@ -28,7 +28,7 @@ var valuesDepth2 = []int{4, 2, 7, 1, 3, 6, 9}
 var valuesDepth1 = valuesDepth2[:3]
 
 func TestNewTree(t *testing.T) {
-	tree := trees.NewBinaryTree(valuesDepth2...)
+	tree := algo.NewBinaryTree(valuesDepth2...)
 
 	badNodeValueErrorFmt := func(node string, want, got int) {
 		t.Errorf("expected tree to have correct at %s node: want %d, got %d", node, want, got)
@@ -58,8 +58,8 @@ func TestNewTree(t *testing.T) {
 }
 
 func TestInsertNode(t *testing.T) {
-	tree := trees.NewBinaryTree(util.RandomNonZeroDigit())
-	node := trees.NewNode(util.RandomNonZeroDigit(), tree)
+	tree := algo.NewBinaryTree(util.RandomNonZeroDigit())
+	node := algo.NewNode(util.RandomNonZeroDigit(), tree)
 	tree.InsertNode(node)
 
 	insertionErrorFmt := func(where string) {
@@ -82,7 +82,7 @@ func TestInsertNode(t *testing.T) {
 }
 
 func TestRootNode(t *testing.T) {
-	tree := trees.NewBinaryTree(valuesDepth2...)
+	tree := algo.NewBinaryTree(valuesDepth2...)
 	root := tree.Left.Left.Root()
 
 	if root == nil || root != tree {
@@ -91,7 +91,7 @@ func TestRootNode(t *testing.T) {
 }
 
 func TestSiblingNode(t *testing.T) {
-	tree := trees.NewBinaryTree(valuesDepth1...)
+	tree := algo.NewBinaryTree(valuesDepth1...)
 
 	nilSibling := tree.Sibling()
 	if nilSibling != nil {
@@ -106,7 +106,7 @@ func TestSiblingNode(t *testing.T) {
 
 func TestInvertTree(t *testing.T) {
 
-	tree := trees.NewBinaryTree(valuesDepth2...)
+	tree := algo.NewBinaryTree(valuesDepth2...)
 
 	tree.Invert()
 
