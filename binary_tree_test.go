@@ -1,10 +1,10 @@
 package algo_test
 
 import (
+	"math/rand"
 	"testing"
 
 	"github.com/moreirathomas/algo"
-	"github.com/moreirathomas/algo/util"
 )
 
 // This file uses a shared tree for all its tests.
@@ -26,6 +26,11 @@ var valuesDepth2 = []int{4, 2, 7, 1, 3, 6, 9}
 
 // A simpler tree with only a depth of 1.
 var valuesDepth1 = valuesDepth2[:3]
+
+func randomNonZeroDigit() int {
+	min, max := 1, 9
+	return rand.Intn(max-min) + min
+}
 
 func TestNewTree(t *testing.T) {
 	tree := algo.NewBinaryTree(valuesDepth2...)
@@ -58,8 +63,8 @@ func TestNewTree(t *testing.T) {
 }
 
 func TestInsertNode(t *testing.T) {
-	tree := algo.NewBinaryTree(util.RandomNonZeroDigit())
-	node := algo.NewNode(util.RandomNonZeroDigit(), tree)
+	tree := algo.NewBinaryTree(randomNonZeroDigit())
+	node := algo.NewNode(randomNonZeroDigit(), tree)
 	tree.InsertNode(node)
 
 	insertionErrorFmt := func(where string) {

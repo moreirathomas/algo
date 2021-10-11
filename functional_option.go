@@ -1,9 +1,12 @@
 package algo
 
+// Calculator represents a calculator object. It has an internal
+// `acc` field used as a destination for the operations it handles.
 type Calculator struct {
 	acc float64
 }
 
+// Do executes the given operation and stores the result inside the calculator.
 func (c *Calculator) Do(op func(float64) float64) float64 {
 	c.acc = op(c.acc)
 	return c.acc
