@@ -1,4 +1,4 @@
-package algo
+package binarytree
 
 import (
 	"encoding/json"
@@ -12,10 +12,10 @@ type TreeNode struct {
 	root   *TreeNode `json:"-"`
 }
 
-// NewBinaryTree returns a binary tree. The first value passed is always the root.
+// New returns a binary tree. The first value passed is always the root.
 // All the others are inserted to the left or right depending on their value compared
 // to the previous node.
-func NewBinaryTree(values ...int) *TreeNode {
+func New(values ...int) *TreeNode {
 	root := NewNode(values[0], nil)
 	for _, v := range values[1:] {
 		node := NewNode(v, root)

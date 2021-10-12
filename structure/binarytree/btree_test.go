@@ -1,10 +1,8 @@
-package algo_test
+package binarytree
 
 import (
 	"math/rand"
 	"testing"
-
-	"github.com/moreirathomas/algo"
 )
 
 // This file uses a shared tree for all its tests.
@@ -33,7 +31,7 @@ func randomNonZeroDigit() int {
 }
 
 func TestNewTree(t *testing.T) {
-	tree := algo.NewBinaryTree(valuesDepth2...)
+	tree := New(valuesDepth2...)
 
 	badNodeValueErrorFmt := func(node string, want, got int) {
 		t.Errorf("expected tree to have correct at %s node: want %d, got %d", node, want, got)
@@ -63,8 +61,8 @@ func TestNewTree(t *testing.T) {
 }
 
 func TestInsertNode(t *testing.T) {
-	tree := algo.NewBinaryTree(randomNonZeroDigit())
-	node := algo.NewNode(randomNonZeroDigit(), tree)
+	tree := New(randomNonZeroDigit())
+	node := NewNode(randomNonZeroDigit(), tree)
 	tree.InsertNode(node)
 
 	insertionErrorFmt := func(where string) {
@@ -87,7 +85,7 @@ func TestInsertNode(t *testing.T) {
 }
 
 func TestRootNode(t *testing.T) {
-	tree := algo.NewBinaryTree(valuesDepth2...)
+	tree := New(valuesDepth2...)
 	root := tree.Left.Left.Root()
 
 	if root == nil || root != tree {
@@ -96,7 +94,7 @@ func TestRootNode(t *testing.T) {
 }
 
 func TestSiblingNode(t *testing.T) {
-	tree := algo.NewBinaryTree(valuesDepth1...)
+	tree := New(valuesDepth1...)
 
 	nilSibling := tree.Sibling()
 	if nilSibling != nil {
@@ -111,7 +109,7 @@ func TestSiblingNode(t *testing.T) {
 
 func TestInvertTree(t *testing.T) {
 
-	tree := algo.NewBinaryTree(valuesDepth2...)
+	tree := New(valuesDepth2...)
 
 	tree.Invert()
 

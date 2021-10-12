@@ -1,4 +1,4 @@
-package algo
+package functionaloption
 
 // Calculator represents a calculator object. It has an internal
 // `acc` field used as a destination for the operations it handles.
