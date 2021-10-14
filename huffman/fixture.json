@@ -1,0 +1,26 @@
+{
+  "value": "",
+  "count": 100,
+  "left": { "value": "b", "count": 40 },
+  "right": {
+    "value": "",
+    "count": 60,
+    "left": {
+      "value": "",
+      "count": 25,
+      "left": { "value": "c", "count": 10 },
+      "right": {
+        "value": "",
+        "count": 15,
+        "left": { "value": "d", "count": 7 },
+        "right": { "value": "e", "count": 8 }
+      }
+    },
+    "right": {
+      "value": "",
+      "count": 35,
+      "left": { "value": "f", "count": 15 },
+      "right": { "value": "a", "count": 20 }
+    }
+  }
+}
